@@ -18,6 +18,21 @@
 
   //Write your program here
   
+  var unsortedArray = [-10, 7, 29, 30, 5, -10, -70];
+//Sort ing array
+const product=unsortedArray.sort((a,b)=>a-b)
+//Finding last 3 array Elements Products
+positiveProduct=product[product.length-1]*product[product.length-2]*product[product.length-3];
+//Finding 2 negative numbers and last index value product
+negativeProduct=product[0]*product[1]*product[product.length-1];
+
+//finding largest product
+console.log(Math.max(positiveProduct,negativeProduct));
+
+
+
+
+
   ```
  
 <a name="array--consecutive--sum"></a><a name="1.2"></a>
@@ -29,7 +44,21 @@
   var lowerBound = 1;
 
   //Write your program here
-  
+
+  var arrayOfIntegers = [2, 5, 1, 4, 9, 6, 3, 7];
+var upperBound = 9;
+var lowerBound = 1;
+
+//Finding sum of Array Values
+ArraySum=arrayOfIntegers.reduce((a, b) => a + b);
+//Finding consecutive numbers sum
+upperLimitSum = (upperBound * (upperBound + 1)) / 2;
+lowerLimitSum = (lowerBound * (lowerBound - 1)) / 2;
+
+NumberSum=upperLimitSum-lowerLimitSum;
+//printing Missing value
+console.log(NumberSum-ArraySum)
+
   ```
 
 <a name="array--unique"></a><a name="1.3"></a>
@@ -40,7 +69,9 @@
 
    //Write your program here
 
-  
+  var array = [1, 2, 3, 5, 1, 5, 9, 1, 2, 8];
+//convering array to set will remove duplicate elements and then converting into array
+console.log(Array.from(new Set(array)))
   ```
 
 <a name="array--largest-difference"></a><a name="1.4"></a>
@@ -52,6 +83,23 @@
 
   //Write your program here
 
+  function maxDifference(arr) {
+    let maxDiff = -1;
+    let min = arr[0];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > min && maxDiff < arr[i] - min) {
+        maxDiff = arr[i] - min;
+      }
+  
+      if (arr[i] < min) {
+        min = arr[i];
+      }
+    }
+    return maxDiff;
+  }
+  
+  console.log(maxDifference([7, 8, 4, 9, 9, 15, 3, 1, 10])); //2
+ 
   ```
   
 <a name="array--product-other-than-itself"></a><a name="1.5"></a>
@@ -63,6 +111,24 @@
 
   //Write your program here
   
+  var array = [2,2,4,1];
+var n=array.length;
+var leftArr=[];
+var RightArr=[];
+var Product=[];
+leftArr[0]=1;
+RightArr[n-1]=1;
+for(let i=1;i<n;i++)
+    leftArr[i]=array[i-1]*leftArr[i-1];
+for(let j=n-2;j>=0;j--)
+    RightArr[j]=array[j+1]*RightArr[j+1];
+for(let k=0;k<n;k++)
+{
+    Product[k]=leftArr[k]*RightArr[k];
+}    
+console.log(Product)
+
+
   ```
  
 <a name="array--intersection"></a><a name="1.6"></a>
@@ -75,6 +141,10 @@
   //Write your program here
 
   ```
+  var firstArray = [2, 2, 4, 1];
+var secondArray = [1, 2, 0, 2];
+intersect=firstArray.filter(element=>{return secondArray.includes(element)})
+console.log(intersect)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -87,6 +157,17 @@
 
   //Write your program here
   ```
+  var string = "Welcome to this Javascript Guide!";
+var StringArr=string.split(" ");
+var newString=[];
+StringArr.forEach(element => {   
+    let Rstring=(str)=>{ return str.split("").reverse().join(""); }  
+    newString.push(Rstring(element));
+    
+});
+console.log(newString.join(" "))
+
+
 
 <a name="string--anagram"></a><a name="2.2"></a>
 - **[2.2](#string--anagram) Given two strings, return true if they are anagrams of one another**
@@ -96,6 +177,23 @@
   var secondWord = "Army";
 
     //Write your program here
+    function anagrams(firstWord, secondWord)
+{
+    if(firstWord.length!=secondWord.length)
+        return false;
+    else
+    {
+        firstWord=firstWord.toLowerCase().split("").sort().join();
+        secondWord=secondWord.toLowerCase().split("").sort().join();
+        if(firstWord===secondWord) return true;
+            
+        else return false;    
+    }    
+}
+var firstWord = "Mary";
+var secondWord = "Army";
+console.log(anagrams(firstWord, secondWord));
+
   ```
 <a name="string--palindrome"></a><a name="2.3"></a>
 - **[2.3](#string--palindrome) Check if a given string is a palindrome**
@@ -105,6 +203,14 @@
   isPalindrome("race Car"); // true
 
   //Write your program here
+  function isPalindrome(str){
+    str=str.replace(/\s/g,"");
+    revString=str.toLowerCase().split("").reverse().join("");
+    if(revString===str) return true;
+    else return false;
+}
+console.log(isPalindrome("racecar"))
+
   ```
 
 <a name="string--isIsomorphic"></a><a name="2.3"></a>
@@ -125,6 +231,18 @@
     isIsomorphic("kick", 'side'); // false
 
     //Write your program here
+
+    function isIsomorphic(str1, str2) {
+    var mapping = {};
+    for (var i = 0; i < str1.length; i++) {
+      if (typeof mapping[str1[i]] === "undefined") mapping[str1[i]] = str2[i];
+      else if (!(mapping[str1[i]] == str2[i])) return false;
+      
+    }
+    console.log(mapping);
+    return true;
+  }
+console.log(isIsomorphic("harish", "progrp"));
   ```
   
 **[⬆ back to top](#table-of-contents)**
@@ -194,6 +312,23 @@
 
   //Write your program here:
  
+  function isPowerOfTwo(number)
+{
+    if(number<1) return false;
+    else
+    {
+        return ((Math.ceil((Math.log(number) / Math.log(2)))) ==  
+        (Math.floor(((Math.log(number) / Math.log(2))))));
+        
+    }
+}
+console.log(isPowerOfTwo(4));
+console.log(isPowerOfTwo(64));
+console.log(isPowerOfTwo(1));
+console.log(isPowerOfTwo(0));
+console.log(isPowerOfTwo(-1));
+console.log(isPowerOfTwo(100));
+
   ```
  
 **[⬆ back to top](#table-of-contents)**
